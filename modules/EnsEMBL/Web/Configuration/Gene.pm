@@ -36,7 +36,6 @@ sub modify_tree {
 
   my $blast_menu = $self->create_submenu('Blast', 'BLAST');
   my $links = EnsEMBL::Web::Component::SequenceServerLink;
-  warn $links->{$gene};
   foreach my $link_name (keys %{$links}){
     $blast_menu->append($self->create_node('Blast_gene',$link_name,
       [qw($link_name $links->{$link_name})],
