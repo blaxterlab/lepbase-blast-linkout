@@ -35,12 +35,12 @@ sub modify_tree {
   $self->PREV::modify_tree(@_);
 
   my $blast_menu = $self->create_submenu('Blast', 'BLAST');
-  $blast_menu->append($self->create_node('Blast_gene','Gene',
-  [qw(
-      gene_summary  EnsEMBL::Web::Component::Gene::GeneSummary
-      navbar        EnsEMBL::Web::Component::ViewNav
-      transcripts   EnsEMBL::Web::Component::Gene::TranscriptsImage
-    )]));
+  my $links = EnsEMBL::Web::Component::SequenceServerLink;
+  foreach my $link_name (keys %{$links}){
+  $blast_menu->append($self->create_node('Blast_gene',$link_name,
+    $links->{$link_name},
+    { 'availability' => 'gene' }
+  ));
 }
 
 1;
