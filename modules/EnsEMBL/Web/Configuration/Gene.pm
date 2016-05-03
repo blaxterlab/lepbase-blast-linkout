@@ -40,8 +40,7 @@ sub modify_tree {
       gene_summary  EnsEMBL::Web::Component::Gene::GeneSummary
       navbar        EnsEMBL::Web::Component::ViewNav
       transcripts   EnsEMBL::Web::Component::Gene::TranscriptsImage
-    )]);
-  );
+    )]));
 }
 
 1;
