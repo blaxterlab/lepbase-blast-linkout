@@ -38,10 +38,10 @@ sub modify_tree {
   my $links = EnsEMBL::Web::Component::SequenceServerLink;
   foreach my $link_name (keys %{$links}){
     $blast_menu->append($self->create_node('Blast_gene',$link_name,
-      $links->{$link_name},
+      [qw($link_name $links->{$link_name})],
       { 'availability' => 'gene' }
     ));
-}
+  }
 }
 
 1;
