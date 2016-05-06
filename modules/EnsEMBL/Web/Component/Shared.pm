@@ -49,7 +49,7 @@ sub transcript_table {
     my ($url, $xref) = $self->get_gene_display_link($object->gene, $description);
 
     if ($xref) {
-      $xref        = $xref->primary_id;
+      $xref        = $xref->primary_id if ref $xref;
       $description =~ s|$xref|<a href="$url" class="constant">$xref</a>|;
     }
 
