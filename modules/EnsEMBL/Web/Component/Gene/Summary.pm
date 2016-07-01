@@ -20,6 +20,7 @@ package EnsEMBL::Web::Component::Gene::Summary;
 
 use strict;
 use warnings;
+use EnsEMBL::Web::Component::Shared;
 no warnings 'uninitialized';
 
 use HTML::Entities qw(encode_entities);
