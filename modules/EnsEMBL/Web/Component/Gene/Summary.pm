@@ -32,6 +32,46 @@ sub content {
   my $self = shift;
   my $html = $self->PREV::content();
 
+
+  my $hub         = $self->hub;
+  my $object      = $self->object;
+  my $species     = $hub->species;
+  my $table       = $self->new_twocol;
+  my $page_type   = ref($self) =~ /::Gene\b/ ? 'gene' : 'transcript';
+
+  # add blast links
+  my $title = $object->stable_id;
+  my $slice = $object->slice;
+  my $blast_html;
+  if ($page_type eq 'gene'){
+  	my $seq = $slice->{'seq'} || $slice->seq(1);
+    $blast_html = sequenceserver_button($title,$seq,'Gene');
+  }
+  else {
+  	my $transcripts = $gene->get_all_Transcripts;
+  	my $index = 0;
+    if (@$transcripts > 1){
+    	for (my $i = 0; $i < @$transcripts; $i++) {
+    		$index = $i;
+    		last if $title eq $transcripts->[$i]->stable_id;
+    	}
+    }
+    my $seq = $transcripts->[$index]->seq()->seq();
+    $blast_html = sequenceserver_button($title,$seq,'Transcript');
+    $seq = undef;
+    $seq = $transcripts->[$index]->spliced_seq();
+    $blast_html .= sequenceserver_button($title,$seq,'cDNA') if $seq;
+    $seq = undef;
+    $seq = $transcripts->[$index]->translateable_seq();
+    $blast_html .= sequenceserver_button($title,$seq,'CDS') if $seq;
+    $seq = undef;
+    $seq = $transcripts->[$index]->translate()->seq();
+    $blast_html .= sequenceserver_button($transcripts->[$index]->stable_id,$seq,'Protein') if $seq;
+  }
+  $table->add_row('BLAST',$blast_html);
+
+  $html .= sprintf '<div class="summary_panel">%s</div>', $table->render;
+
   return $html;
 }
 
