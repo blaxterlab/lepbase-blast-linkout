@@ -44,7 +44,6 @@ sub sequenceserver_button {
 }
 
 sub sequenceserver_link {
-    my $obj = shift;
     my ($title,$sequence,$label) = @_;
     my $link = '<a href="#" onclick="document.getElementById(\'nt_blast_form_'.$label.'\').submit();" class="button toggle no_img" style="float:left" title="Click to BLAST against Lepidoptera genes and genomes (opens a new window)">'.$label.'</a>';
     return $link;
