@@ -18,7 +18,7 @@ limitations under the License.
 
 =head1 MODIFICATIONS
 
-Copyright [2014-2015] University of Edinburgh
+Copyright [2014-2016] University of Edinburgh
 
 All modifications licensed under the Apache License, Version 2.0, as above.
 
@@ -386,6 +386,7 @@ sub transcript_table {
   ##################################
   ### BEGIN LEPBASE MODIFICATIONS...
   ##################################
+    # add blast links
     my $title = $object->stable_id;
     my $slice = $object->slice;
     my $blast_html;
@@ -415,6 +416,10 @@ sub transcript_table {
       $blast_html .= sequenceserver_button($transcripts->[$index]->stable_id,$seq,'Protein') if $seq;
     }
     $table->add_row('BLAST',$blast_html);
+
+    # add gene tree links
+    
+
   ##################################
   ### ...END LEPBASE MODIFICATIONS
   ##################################
