@@ -38,7 +38,7 @@ sub content {
   my $object      = $self->object;
   my $species     = $hub->species;
   my $table       = $self->new_twocol;
-  my $gene = $page_type eq 'gene' ? $object->Obj : $object->gene;
+  my $gene        = $object->Obj;
 
   # add blast links
   my $title = $object->stable_id;
@@ -46,7 +46,7 @@ sub content {
   my $blast_html;
   my $seq = $slice->{'seq'} || $slice->seq(1);
   $blast_html = EnsEMBL::Web::Component::Shared->sequenceserver_button($title,$seq,'Gene');
-  
+
   $table->add_row('BLAST',$blast_html);
 
   $html .= sprintf '<div class="summary_panel">%s</div>', $table->render;
