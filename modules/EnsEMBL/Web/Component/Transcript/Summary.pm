@@ -16,6 +16,14 @@ limitations under the License.
 
 =cut
 
+=head1 MODIFICATIONS
+
+Copyright [2016] University of Edinburgh
+
+All modifications licensed under the Apache License, Version 2.0, as above.
+
+=cut
+
 package EnsEMBL::Web::Component::Transcript::Summary;
 
 use strict;
@@ -31,8 +39,11 @@ use previous qw(
 
 sub content {
   my $self = shift;
-  my $html = $self->PREV::content();
 
+##################################
+### BEGIN LEPBASE MODIFICATIONS...
+##################################
+  my $html = $self->PREV::content();
 
   my $hub         = $self->hub;
   my $object      = $self->object;
@@ -66,7 +77,9 @@ sub content {
   $table->add_row('BLAST',$blast_html);
 
   $html .= sprintf '<div class="summary_panel">%s</div>', $table->render;
-
+##################################
+### ...END LEPBASE MODIFICATIONS
+##################################
   return $html;
 }
 
