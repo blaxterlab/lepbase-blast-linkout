@@ -38,6 +38,7 @@ sub content {
   my $species     = $hub->species;
   my $table       = $self->new_twocol;
   my $page_type   = ref($self) =~ /::Gene\b/ ? 'gene' : 'transcript';
+  my $gene = $page_type eq 'gene' ? $object->Obj : $object->gene;
 
   # add blast links
   my $title = $object->stable_id;
