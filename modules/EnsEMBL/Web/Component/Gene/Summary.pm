@@ -47,7 +47,7 @@ sub content {
   my $blast_html;
   if ($page_type eq 'gene'){
   	my $seq = $slice->{'seq'} || $slice->seq(1);
-    $blast_html = sequenceserver_button($title,$seq,'Gene');
+    $blast_html = EnsEMBL::Web::Component::Shared->sequenceserver_button($title,$seq,'Gene');
   }
   else {
   	my $transcripts = $gene->get_all_Transcripts;
@@ -59,16 +59,16 @@ sub content {
     	}
     }
     my $seq = $transcripts->[$index]->seq()->seq();
-    $blast_html = sequenceserver_button($title,$seq,'Transcript');
+    $blast_html = EnsEMBL::Web::Component::Shared->sequenceserver_button($title,$seq,'Transcript');
     $seq = undef;
     $seq = $transcripts->[$index]->spliced_seq();
-    $blast_html .= sequenceserver_button($title,$seq,'cDNA') if $seq;
+    $blast_html .= EnsEMBL::Web::Component::Shared->sequenceserver_button($title,$seq,'cDNA') if $seq;
     $seq = undef;
     $seq = $transcripts->[$index]->translateable_seq();
-    $blast_html .= sequenceserver_button($title,$seq,'CDS') if $seq;
+    $blast_html .= EnsEMBL::Web::Component::Shared->sequenceserver_button($title,$seq,'CDS') if $seq;
     $seq = undef;
     $seq = $transcripts->[$index]->translate()->seq();
-    $blast_html .= sequenceserver_button($transcripts->[$index]->stable_id,$seq,'Protein') if $seq;
+    $blast_html .= EnsEMBL::Web::Component::Shared->sequenceserver_button($transcripts->[$index]->stable_id,$seq,'Protein') if $seq;
   }
   $table->add_row('BLAST',$blast_html);
 
