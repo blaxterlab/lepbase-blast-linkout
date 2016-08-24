@@ -35,7 +35,7 @@ sub sequenceserver_button {
     my $obj = shift;
     my ($title,$sequence,$label) = @_;
     my $button = '
-        <form id="nt_blast_form_'.$label.'" target="_blank" action="http://blast.lepbase.org" method="POST">
+        <form id="nt_blast_form_'.$label.'" target="_blank" action="http://blast.ngenomes.org" method="POST">
             <input type="hidden" name="input_sequence" value=">'.$title."\n".$sequence.'">
             '.sequenceserver_link($title,$sequence,$label).'
         </form>';
@@ -45,7 +45,7 @@ sub sequenceserver_button {
 
 sub sequenceserver_link {
     my ($title,$sequence,$label) = @_;
-    my $link = '<a href="#" onclick="document.getElementById(\'nt_blast_form_'.$label.'\').submit();" class="button toggle no_img" style="float:left" title="Click to BLAST against Lepidoptera genes and genomes (opens a new window)">'.$label.'</a>';
+    my $link = '<a href="#" onclick="document.getElementById(\'nt_blast_form_'.$label.'\').submit();" class="button toggle no_img" style="float:left" title="Click to BLAST against ngenomes genes and genomes (opens a new window)">'.$label.'</a>';
     return $link;
 }
 
